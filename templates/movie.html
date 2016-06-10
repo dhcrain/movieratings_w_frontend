@@ -14,14 +14,30 @@
             <h1>{{ movie.movie_title }}</h1>
             <a class="btn btn-primary" href="{{ movie.imdb_url }}" role="button">Visit IMDB for more information.</a>
         </div>
-        <p>Each individual movie. This page should have the movie, its average rating, and each person who rated it. The list of people should have the rating with each person and should have a link to that person's page.</p>
+        <p><b>Each individual movie. This page should have the movie, its average
+            rating, and each person who rated it. The list of people should
+            have the rating with each person and should have a link to that
+            person's page.</b></p>
         <ul class="list-unstyled">
             <li>Release date: {{ movie.release_date }}</li>
             <li></li>
             <li>Genre: {{ movie.action }}</li>
+            <hr>
             <!-- for field in movie, if value == 1 then display-->
-            <li>Rating: {{ movie }}</li>
+            <li>Rating object: {{ rating }}</li>
         </ul>
+        <h2>Ratings:</h2>
+        <hr>
+        <p>
+        {% for thing in rating %}
+            <table width="250">
+            <tr>
+                <td height="25">Rating: {{ thing.rating }}</td>
+                <td><a href="/rater/{{ thing }}">See the rater</a></td>
+            </tr>
+            </table>
+        {% endfor %}
+        </p>
         <p>Do you want to rate this move?</p>
     </div>
 </body>
