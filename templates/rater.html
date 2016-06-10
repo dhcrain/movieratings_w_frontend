@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Latest compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+    <!-- Optional theme -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"> -->
     <meta charset="UTF-8">
     <title>Rater Info</title>
 </head>
 <body>
-    <p>Each individual user. This page should have their demographic data,
-        and a list of all movies they've rated, with the rating they gave it.
-        Each movie listed should have the rating they gave it beside it and
-        should have a link to that movie's page.</p>
-    <p>All about this rater.</p>
-    <p>{{ rater }}</p>
+    <h1>All about this rater.</h1>
+    <ul class="list-unstyled">
+        <li>Occupation: {{ rater.occupation }}</li>
+        <li>Age: {{ rater.age }}</li>
+        <li>Gender: {{ rater.gender }}</li>
+        <li>Zip Code: {{ rater.zip_code }}</li>
+    </ul>
+    <h2>Movies Rated:</h2>
+    <hr>
+    <table class="table table-condensed table-striped">
+        <th>Movie</th>
+        <th>Rating</th>
+    {% for thing in rating %}
+        <tr>
+          <td><a href="/movie/{{ thing.item_id.id }}">{{ thing.item_id }}</a></td>
+          <td><strong>{{ thing.rating }}</strong></td>
+        </tr>
+    {% endfor %}
+    </table>
 </body>
 </html>
