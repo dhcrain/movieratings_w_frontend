@@ -19,7 +19,7 @@ from movieratings import views
 
 urlpatterns = [
     url(r'^$', views.index_view),
-    url(r'^movie/(?P<movie_id>\w+)/$', views.movie_view),
+    url(r'^movie/(?P<movie_id>\d+)/$', views.movie_view),
     url(r'^rater/(?P<rater_id>\w+)/$', views.rater_view),
     url(r'^add_movie/$', views.add_movie),
     url(r'^admin/', admin.site.urls),

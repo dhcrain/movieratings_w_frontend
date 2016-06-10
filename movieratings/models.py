@@ -57,12 +57,12 @@ class Rating(models.Model):
     def top_20(self):
         pass
 
-    def average_rating(self):
-        for movie in Rating:
-            all_ratings = []
-            all_ratings = (Movie.objects.get(Movie.id))
-
-            # find the movie is in the Rating table and then get a list of the ratings
-        # all_ratings = map(lambda x: x.rating, self.review_set.all())
-        return mean(all_ratings)
+    # def average_rating(self):
+        # for movie in Rating:
+        #     all_ratings = []
+        #     all_ratings = (Movie.objects.get(Movie.id))
+        #
+        #     # find the movie is in the Rating table and then get a list of the ratings
+        # # all_ratings = map(lambda x: x.rating, self.review_set.all())
+        # return mean(all_ratings)
 
