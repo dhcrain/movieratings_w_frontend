@@ -1,5 +1,7 @@
 from django.db import models
 from statistics import mean
+from django.db.models import Avg
+
 # Create your models here.
 
 
@@ -43,6 +45,10 @@ class Movie(models.Model):
     def __str__(self):
         return self.movie_title
 
+    def genre_getter(self):
+        # if Movie.objects.filter(adventure="1", war="1", comedy="1"):
+        return "Adventure"
+
 
 class Rating(models.Model):
     user_id = models.ForeignKey(Rater)
@@ -54,12 +60,12 @@ class Rating(models.Model):
     def __str__(self):
         return str(self.id)
 
-    def top_20(self):
-        pass
+    def top_20(cls):
+        return Rating.objects.annotate(top=Avg('rating')).order_by('-top')[:20]
 
-    def average_rating(self):
+    # def average_rating(self):
         # for movie in Rating:
-        return mean(Movie.objects.filter(id=self.item_id).values(self.rating))
+        # return mean(Movie.objects.filter(id=self.item_id).values(self.rating))
 
         # find the movie is in the Rating table and then get a list of the ratings
         # all_ratings = map(lambda x: x.rating, self.review_set.all())
