@@ -17,17 +17,13 @@
             and each movie listed should have a link to its individual page.</p>
             <hr>
             <h2>Here are the Top 20 movies</h2>
-            <table class="table">
-                <th>Movie</th>
-                <th>Avg. Rating</th>
-                {% for item in top_20 %}
-                <tr>
-                    <td><a href="movie/{{ item.item_id.id }}">{{ item.item_id.movie_title }}</a></td>
-                    <td>{{ avg_rating }}</td>
-                </tr>
-                {% endfor %}
-            </table>
-            <p></p>
+        {% for movie in top_20 %}
+            <p>{{ movie.movie_id }}</p>
+            <p>{{ movie.movie_rating }}</p>
+            <p>{{ movie.rating_count }}</p>
+
+        {% endfor %}
+
     </div>
 </body>
 </html>

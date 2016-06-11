@@ -71,3 +71,11 @@ class Rating(models.Model):
         # all_ratings = map(lambda x: x.rating, self.review_set.all())
         # return mean(all_ratings)
 
+
+class Average(models.Model):
+    movie_id = models.ForeignKey(Movie)
+    movie_rating = models.FloatField()
+    rating_count = models.IntegerField()
+
+    def __str__(self):
+        return str(self.movie_id)
