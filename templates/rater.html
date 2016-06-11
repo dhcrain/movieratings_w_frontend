@@ -2,31 +2,43 @@
 <html lang="en">
 <head>
     <!-- Latest compiled and minified CSS -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <!-- Optional theme -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>Rater Info</title>
 </head>
 <body>
-    <h1>All about this rater.</h1>
+    <div class="container">
+    <div class="jumbotron">
+        <h1 class="text-center">All about this rater.</h1>
+    </div>
     <ul class="list-unstyled">
-        <li>Occupation: {{ rater.occupation }}</li>
-        <li>Age: {{ rater.age }}</li>
-        <li>Gender: {{ rater.gender }}</li>
-        <li>Zip Code: {{ rater.zip_code }}</li>
+        <li><strong>Occupation: </strong>{{ rater.occupation }}</li>
+        <li><strong>Age: </strong>{{ rater.age }}</li>
+        <li><strong>Gender: </strong>{{ rater.gender }}</li>
+        <li><strong>Zip Code: </strong>{{ rater.zip_code }}</li>
+        <li><strong>Movies rated: </strong>{{ rating_count }}</li>
     </ul>
-    <h2>Movies Rated:</h2>
     <hr>
-    <table class="table table-condensed table-striped">
-        <th>Movie</th>
-        <th>Rating</th>
-    {% for thing in rating %}
-        <tr>
-          <td><a href="/movie/{{ thing.item_id.id }}">{{ thing.item_id }}</a></td>
-          <td><strong>{{ thing.rating }}</strong></td>
-        </tr>
-    {% endfor %}
-    </table>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Movies Rated:</h2>
+            <table class="table table-condensed table-striped">
+                <th>Movie</th>
+                <th>Rating</th>
+                {% for thing in rating %}
+                <tr>
+                    <td><a href="/movie/{{ thing.item_id.id }}">{{ thing.item_id }}</a></td>
+                    <td><strong>{{ thing.rating }}</strong></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-md-6">
+            <p>Hello!</p>
+        </div>
+    </div>
+    </div>
 </body>
 </html>

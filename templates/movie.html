@@ -2,47 +2,54 @@
 <html lang="en">
 <head>
     <!-- Latest compiled and minified CSS -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <!-- Optional theme -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>{{ movie.movie_title }}</title>
 </head>
 <body>
-    <div class="container">
-        <div class="jumbotron">
-            <h1 class="text-center">{{ movie.movie_title }}</h1>
-            <div class="row">
-                <div class="col-md-6">
-                    <a class="btn btn-primary" href="{{ movie.imdb_url }}" role="button">Visit IMDB for more information.</a>
-                </div>
-                <div class="col-md-6">
-                    <p>Average Rating....</p>
-                </div>
+    <div class="jumbotron">
+        <h1 class="text-center">{{ movie.movie_title }}</h1>
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <a class="btn btn-primary" href="{{ movie.imdb_url }}" role="button">Visit IMDB for more information.</a>
+            </div>
+            <div class="col-md-6">
+                <p class="text-center">Average Rating: {{ average_rating }}</p>
             </div>
         </div>
+    </div>
+    <div class="container">
         <p><b>Each individual movie. This page should have the movie, its average
             rating, and each person who rated it. The list of people should
             have the rating with each person and should have a link to that
-            person's page.</b></p>
+            person's page. Add the ability to create a review for an existing movie.</b></p>
+        <hr>
         <ul class="list-unstyled">
             <li>Release date: {{ movie.release_date }}</li>
-            <li> </li>
+            <li>Number of Ratings: {{ rating_count }}</li>
             <!-- for field in movie, if value == 1 then display-->
             <li>Genre: {{ movie.action }}</li>
-            <hr>
         </ul>
-        <h2>Ratings:</h2>
+        <p>???Genre???: {{ movie_view.genre_getter }}</p>
         <hr>
-        <table class="table table-condensed table-striped">
-            {% for thing in rating %}
-            <tr>
-              <td>Rating: {{ thing.rating }}</td>
-              <td><a href="/rater/{{ thing.user_id }}">See the Rater's information</a></td>
-            </tr>
-            {% endfor %}
-        </table>
-        <p>Do you want to rate this move?</p>
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="text-center">Ratings</h3>
+                <table class="table table-condensed table-striped">
+                    {% for thing in rating %}
+                    <tr>
+                        <td>Rating: <span class="badge">{{ thing.rating }}</span></td>
+                        <td><a href="/rater/{{ thing.user_id }}">See the Rater's information</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="col-md-6">
+                <p>Do you want to rate this move?</p>
+            </div>
+        </div>
     </div>
 </body>
 </html>
