@@ -6,7 +6,7 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     <meta charset="UTF-8">
-    <title>Rate movie</title>
+    <title>Rate {{ movie }}</title>
 </head>
 <body>
     <div class="jumbotron">
@@ -15,12 +15,13 @@
     </div>
     <div class="container">
         <div class="row">
+            <p>Enter a number 1-5</p>
             {% block content %}
             <form action="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
+                <button type="submit" class="save btn btn-default">Rate it!</button>
             </form>
-            <button type="submit" class="save btn btn-default">Save</button>
             {% endblock %}
         </div>
     </div>

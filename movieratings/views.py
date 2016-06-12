@@ -1,3 +1,5 @@
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from movieratings.models import Movie
 from movieratings.models import Rater
@@ -5,7 +7,7 @@ from movieratings.models import Rating
 from movieratings.models import Average
 from movieratings.forms import RatingForm
 from django.db.models import Avg
-from datetime import datetime
+import time
 from django.shortcuts import redirect
 
 # Create your views here.
@@ -51,11 +53,14 @@ def rate_movie(request, movie_id):
         form = RatingForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            post.user_id = 944
+            post.user_id = 944     # Rater.objects.get(id=944)        # 944 is the 'webuser'
             post.item_id = movie_id
-            post.timestamp = datetime.datetime.now()
+            post.rating = form.cleaned_data['rating']
+            post.timestamp = time.time()
+            # post = Rating.objects.create(user_id=user_id, item_id=item_id, rating=rating, timestamp=timestamp)
             post.save()
-            return redirect('movie', movie_id=movie_id)
+            return redirect('index_view')
+            # return HttpResponseRedirect(reverse('movie_view', movie_id))
     else:
         form = RatingForm()
 
