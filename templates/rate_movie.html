@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Rate movie</title>
+</head>
+<body>
+    <div class="jumbotron">
+        <h1 class="text-center">RATE:</h1>
+        <h2 class="text-center">{{ movie }}</h2>
+    </div>
+    <div class="container">
+        <div class="row">
+            {% block content %}
+            <form action="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </form>
+            <button type="submit" class="save btn btn-default">Save</button>
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

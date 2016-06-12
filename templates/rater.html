@@ -29,8 +29,8 @@
                 <th>Rating</th>
                 {% for thing in rating %}
                 <tr>
-                    <td><a href="/movie/{{ thing.item_id.id }}">{{ thing.item_id }}</a></td>
-                    <td><strong>{{ thing.rating }}</strong></td>
+                    <td><a href="{% url 'movie' thing.item_id.id %}">{{ thing.item_id }}</a></td>
+                    <td><span class="badge">{{ thing.rating }}</span></td>
                 </tr>
                 {% endfor %}
             </table>

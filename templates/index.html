@@ -13,17 +13,19 @@
         <h1 class="text-center">THE movie website.</h1>
     </div>
     <div class="container">
-        <p>The top 20 movies rated. This list of movies should have their average rating,
-            and each movie listed should have a link to its individual page.</p>
-            <hr>
-            <h2>Here are the Top 20 movies</h2>
-        {% for movie in top_20 %}
-            <p>{{ movie.movie_id }}</p>
-            <p>{{ movie.movie_rating }}</p>
-            <p>{{ movie.rating_count }}</p>
-
-        {% endfor %}
-
+        <h2>Here are the Top 20 movies <small>(with more than 100 ratings)</small></h2>
+        <table class="table table-condensed table-striped">
+            <th>Movie</th>
+            <th>Avg. rating</th>
+            <th>Times Rated</th>
+            {% for movie in top_20 %}
+            <tr>
+                <td><a href="{% url 'movie' movie.movie_id.id %}">{{ movie.movie_id }}</a></td>
+                <td><span class="badge">{{ movie.movie_rating }}</span></td>
+                <td>{{ movie.rating_count }}</td>
+            </tr>
+            {% endfor %}
+        </table>
     </div>
 </body>
 </html>

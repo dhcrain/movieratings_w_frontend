@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
     <!-- Latest compiled and minified CSS -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <!-- Optional theme -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     <meta charset="UTF-8">
     <title>{{ movie.movie_title }}</title>
 </head>
 <body>
     <div class="jumbotron">
-        <h1 class="text-center">{{ movie.movie_title }}</h1>
         <div class="row">
-            <div class="col-md-6 text-center">
-                <a class="btn btn-primary" href="{{ movie.imdb_url }}" role="button">Visit IMDB for more information.</a>
-            </div>
             <div class="col-md-6">
-                <p class="text-center">Average Rating: {{ average_rating }}</p>
+                <h1 class="text-center">{{ movie.movie_title }}</h1>
+            </div>
+            <div class="col-md-6 text-center">
+                <p><a target="_blank" class="btn btn-primary" href="{{ movie.imdb_url }}" role="button">Visit IMDB for more information.</a></p>
+                <p class="">Average Rating: {{ average_rating.movie_rating }}</p>
             </div>
         </div>
     </div>
@@ -28,11 +28,11 @@
         <hr>
         <ul class="list-unstyled">
             <li>Release date: {{ movie.release_date }}</li>
-            <li>Number of Ratings: {{ rating_count }}</li>
+            <li>Number of Ratings: {{ rating_count.rating_count }}</li>
             <!-- for field in movie, if value == 1 then display-->
-            <li>Genre: {{ movie.action }}</li>
+            <!-- <li>Genre: {{ movie.action }}</li> -->
         </ul>
-        <p>???Genre???: {{ genre }}</p>
+        <!-- <p>???Genre???: {{ genre }}</p> -->
         <hr>
         <div class="row">
             <div class="col-md-6">
@@ -40,14 +40,15 @@
                 <table class="table table-condensed table-striped">
                     {% for thing in rating %}
                     <tr>
-                        <td>Rating: <span class="badge">{{ thing.rating }}</span></td>
-                        <td><a href="/rater/{{ thing.user_id }}">See the Rater's information</a></td>
+                        <td class="text-center">Rating: <span class="badge">{{ thing.rating }}</span></td>
+                        <td class="text-right"><a href="{% url 'rater' thing.user_id %}">See this Rater's information</a></td>
                     </tr>
                     {% endfor %}
                 </table>
             </div>
-            <div class="col-md-6">
-                <p>Do you want to rate this move?</p>
+            <div class="col-md-6 text-center">
+                <p><a class="btn btn-primary" href="{% url 'rate_movie' movie.id %}">Do you want to rate this move?</a>
+                </p>
             </div>
         </div>
     </div>
