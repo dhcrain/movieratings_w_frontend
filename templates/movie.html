@@ -26,11 +26,6 @@
         </div>
     </div>
     <div class="container">
-        <p><b>Each individual movie. This page should have the movie, its average
-            rating, and each person who rated it. The list of people should
-            have the rating with each person and should have a link to that
-            person's page. Add the ability to create a review for an existing movie.</b></p>
-        <hr>
         <ul class="list-unstyled">
             <li>Release date: {{ movie.release_date }}</li>
             <li>Number of Ratings: {{ rating_count.rating_count }}</li>
@@ -52,8 +47,8 @@
                 </table>
             </div>
             <div class="col-md-6 text-center">
-                <p><a class="btn btn-primary" href="{% url 'rate_movie' movie.id %}">Do you want to rate this move?</a>
-                </p>
+                <p><a class="btn btn-primary" href="{% url 'rate_movie' movie.id %}">Do you want to rate this move?</a></p>
+                <p>{{ user_rating.rating }}</p> {# I can see the object but not the rating #}
             </div>
         </div>
     </div>
