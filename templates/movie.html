@@ -1,6 +1,8 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{% static 'movieratings/styles.css' %}">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <!-- Optional theme -->
@@ -16,7 +18,10 @@
             </div>
             <div class="col-md-6 text-center">
                 <p><a target="_blank" class="btn btn-primary" href="{{ movie.imdb_url }}" role="button">Visit IMDB for more information.</a></p>
-                <p class="">Average Rating: {{ average_rating.movie_rating }}</p>
+                <p>Average Rating: {{ rating_count.movie_rating }}</p>
+                <div class='rating_bar center-div'>
+                    <div class='rating' style='width:{{ average_rating }}%;'></div>
+                </div>
             </div>
         </div>
     </div>

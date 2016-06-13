@@ -17,11 +17,17 @@
         <table class="table table-condensed table-striped">
             <th>Movie</th>
             <th>Avg. rating</th>
+            <th>stars</th>
             <th>Times Rated</th>
             {% for movie in top_20 %}
             <tr>
                 <td><a href="{% url 'movie' movie.movie_id.id %}">{{ movie.movie_id }}</a></td>
                 <td><span class="badge">{{ movie.movie_rating }}</span></td>
+                <td>
+                    <div class='rating_bar'>
+                    <div class='rating' style='width:{{ movie. }}%;'></div>
+                    </div>
+                </td>
                 <td>{{ movie.rating_count }}</td>
             </tr>
             {% endfor %}

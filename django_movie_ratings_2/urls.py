@@ -21,7 +21,6 @@ urlpatterns = [
     url(r'^$', views.index_view, name="index"),
     url(r'^movie/(?P<movie_id>\d+)/$', views.movie_view, name="movie"),
     url(r'^rater/(?P<rater_id>\w+)/$', views.rater_view, name="rater"),
-    url(r'^add_movie/$', views.add_movie, name='add_move'),
     url(r'^movie/(?P<movie_id>\d+)/rate_movie$', views.rate_movie, name='rate_movie'),
     url(r'^admin/', admin.site.urls),
 ]

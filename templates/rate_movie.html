@@ -17,7 +17,7 @@
         <div class="row">
             <p>Enter a number 1-5</p>
             {% block content %}
-            <form action="POST">
+            <form method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="save btn btn-default">Rate it!</button>
