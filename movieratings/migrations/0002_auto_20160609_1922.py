@@ -35,8 +35,8 @@ def import_rating_data(apps, schema_editor):
     with open("data/u.data") as infile:
         rating = csv.reader(infile, delimiter="\t")
         for row in rating:
-            rater_user_id = Rater.objects.get(id=row[0])
             movie_movie_id = Movie.objects.get(id=row[1])
+            rater_user_id = Rater.objects.get(id=row[0])
             Rating.objects.create(user_id=rater_user_id, item_id=movie_movie_id, rating=row[2], timestamp=row[3])
     # raise Exception("3 yay")      # This is a great test
 

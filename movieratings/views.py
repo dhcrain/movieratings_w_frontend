@@ -22,7 +22,7 @@ def movie_view(request, movie_id):
         "rating": Rating.objects.filter(item_id=movie_id),
         "rating_count": Average.objects.get(movie_id=movie_id),
         "average_rating": avg_rating.movie_rating/5*100,
-        "genre": Movie.genre_getter,
+        "genre": Movie.genre_getter,        # non-functional
         "user_rating": Rating.objects.filter(item_id=movie_id).filter(user_id=944)
     }
     return render(request, 'movie.html', context)
@@ -38,11 +38,12 @@ def rater_view(request, rater_id):
 
 
 def rate_movie(request, movie_id):
+    # Need to figure out how to add new reviews to the Average table so it is current
     if request.method == "POST":
         form = RatingForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
-            post.user_id = Rater.objects.get(id=944)        # 944 is the 'webuser'
+            post.user_id = Rater.objects.get(id=944)        # 944 is the 'WebUser'
             post.item_id = Movie.objects.get(id=movie_id)
             post.rating = form.cleaned_data['rating']
             post.timestamp = time.time()
